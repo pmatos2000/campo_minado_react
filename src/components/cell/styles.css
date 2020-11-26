@@ -1,0 +1,86 @@
+
+:root {
+    --background-color-press: rgb(192,192,192);
+  }
+
+
+.Cell{
+    height: 64px;
+    width: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    border: black solid 1px;
+}
+
+.Cell--normal{
+    background-color: rgb(0, 0, 255);
+}
+
+.Cell--normal:hover{
+    background-color: rgb(64, 64, 255);
+}
+
+.Cell--normal:active{
+    background-color: rgb(0, 0, 192);
+}
+
+
+.Cell--press_bomb{
+    background-color: var(--background-color-press);
+    background-image: url("../../features/img/bomb.png");
+}
+
+.Cell--press_empty{
+    background-color: var(--background-color-press);
+}
+
+.Cell--press_empty_1{
+    background-color: var(--background-color-press);
+    text-shadow: 1px 1px black;
+    color: rgb(0, 128, 0);
+}
+
+.Cell--press_empty_2{
+    background-color: var(--background-color-press);
+    text-shadow: 1px 1px black;
+    color: rgb(128, 192, 0);
+}
+
+.Cell--press_empty_3{
+    background-color: var(--background-color-press);
+    text-shadow: 1px 1px black;
+    color: rgb(255, 255, 0);
+}
+
+.Cell--press_empty_4{
+    background-color: var(--background-color-press);
+    text-shadow: 1px 1px black;
+    color: rgb(255, 128, 0);
+}
+
+.Cell--press_empty_5{
+    background-color: var(--background-color-press);
+    text-shadow: 1px 1px black;
+    color: rgb(255, 0, 0);
+}
+
+.Cell--press_empty_6{
+    background-color: var(--background-color-press);
+    text-shadow: 1px 1px black;
+    color: rgb(147, 112, 219);
+}
+
+.Cell--press_empty_7{
+    background-color: var(--background-color-press);
+    text-shadow: 1px 1px black;
+    color: rgb(76, 40, 130);
+}
+
+
+.Cell--press_empty_8{
+    background-color: var(--background-color-press);
+    text-shadow: 1px 1px black;
+    color: rgb(255, 40, 255);
+}
