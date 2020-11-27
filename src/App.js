@@ -1,3 +1,4 @@
+import "./App.css"
 import MineField from "./components/minefield"
 
 const actionCell = (x, y) => {

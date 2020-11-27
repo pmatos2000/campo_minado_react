@@ -5,12 +5,12 @@
 
 
 .Cell{
-    height: 64px;
-    width: 64px;
+    height: min(64px, max(32px, 5vw));
+    width:  min(64px, max(32px, 5vw));
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 48px;
+    font-size: min(48px, max(24px, 3vw));
     border: black solid 1px;
 }
 
@@ -29,7 +29,8 @@
 
 .Cell--press_bomb{
     background-color: var(--background-color-press);
-    background-image: url("../../features/img/bomb.png");
+    background-image: url("../../features/img/bomb.svg");
+    background-size: 100%;
 }
 
 .Cell--press_empty{
@@ -39,6 +40,7 @@
 .Cell--press_empty_1{
     background-color: var(--background-color-press);
     text-shadow: 1px 1px black;
+    
     color: rgb(0, 128, 0);
 }
 
