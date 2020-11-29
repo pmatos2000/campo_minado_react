@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { ActionType, CellType } from "../../util/enum";
 import "./styles.css"
 

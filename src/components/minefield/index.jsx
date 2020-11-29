@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ActionType, CellType } from "../../util/enum";
 import GeneratorCell from "../generatorCell";
 
@@ -52,6 +52,21 @@ const MineField = (props) => {
     //Flag usado para saber se é o primeiro clique
     let [firstClick, setFirstClick] = useState(true);
 
+    //Função para verificar se o jogo foi vencido
+    const victory = () => {
+        debugger;
+        for(let i = 0; i < dim; i++){
+            for(let j = 0; j < dim; j++){
+                //Verifica se todas as celulas que não foram reveladas
+                //não são bombas
+                if(revealeds[i][j] === false && field[i][j] !== CellType.IS_BOMB){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
 
     //Função para revelar exibir o valor do botão e dos vizinhos
     const toReveal = (x, y, _field = field) => {
@@ -95,10 +110,11 @@ const MineField = (props) => {
             }
         }
 
+        //Executa o BFS
         BFS();
 
+        //Atualiza os campos revelados
         const newRevealeds = newMatriz(dim, dim, false);
-
         for (let i = 0; i < dim; i++) {
             for (let j = 0; j < dim; j++) {
                 newRevealeds[i][j] = revealeds[i][j] || (reveal.findIndex(value => value.x === i && value.y === j) !== -1);
@@ -108,6 +124,7 @@ const MineField = (props) => {
         setRevealeds(newRevealeds);
     }
 
+    //Revela todas as bombas
     const toRevealBombs = () => {
         const newRevealeds = newMatriz(dim, dim, false);
         for (let i = 0; i < dim; i++) {
@@ -118,9 +135,8 @@ const MineField = (props) => {
         setRevealeds(newRevealeds);
     }
 
-
+    //Função passada para todas as celulas para executar uma ação a ser clicado
     const actionCell = (actionType, data) => {
-        debugger;
         switch (actionType) {
             case ActionType.TO_REVEAL:
                 if (firstClick) {
@@ -136,6 +152,7 @@ const MineField = (props) => {
                 break;
             case ActionType.EXE_BOMB:
                 toRevealBombs();
+                alert("Você perdeu");
                 break;
             default:
                 console.log(actionType);
@@ -143,6 +160,12 @@ const MineField = (props) => {
 
         }
     }
+
+    useEffect(() => {
+        if(victory()){
+            alert("Você venceu!!!");
+        }
+    });
 
     return (
         <div className="MineFiel">
