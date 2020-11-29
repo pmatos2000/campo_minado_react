@@ -51,4 +51,4 @@ const Cell = (props => {
     }
 });
 
-export default React.memo(Cell);
+export default Cell;

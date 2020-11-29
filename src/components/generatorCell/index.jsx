@@ -6,7 +6,7 @@ import "./styles.css"
 const GeneratorCell = (props) => {
     const { field, action, revealeds } = props;
 
-    const cellMap = (cell, x, y) => (
+    const cellMap =  (x, y) => (
         <Cell
             x={x}
             y={y}
@@ -19,7 +19,7 @@ const GeneratorCell = (props) => {
 
     const lineMap = (line, x) => (
         <div className="Container" key={`line_${x}`}>
-            { line.map((cell, y) => cellMap(cell, x, y)) }
+            { line.map((_, y) => cellMap(x, y)) }
         </div>
     );
 

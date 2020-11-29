@@ -8,12 +8,6 @@ import { randomInt, newMatriz, calcNumberOfPumpsNearby } from "../../util/util";
 
 
 
-
-
-const updateForceView = (forceView, field, x, y) => {
-    //Realiza uma busca em largura
-}
-
 const MineField = (props) => {
 
     const { dim, numBombs } = props;
@@ -38,45 +32,46 @@ const MineField = (props) => {
 
 
 
-
-
-
-
-
     //Salva a dimensão do campo minado
-    const [field, setField] = useState(genField(dim, dim))
+    const [field, setField] = useState(newMatriz(dim, dim, false))
 
     //Salva os campos que já foram revelados
     const [revealeds, setRevealeds] = useState(newMatriz(dim, dim, false));
 
+    //Flag usado para saber se é o primeiro clique
+    let [firstClick, setFirstClick] = useState(true);
+
 
     //Função para revelar exibir o valor do botão e dos vizinhos
-    const toReveal = (x, y) => {
+    const toReveal = (x, y, _field=field) => {
 
-        const reveal = new Array();
+        const reveal = [];
 
         //Função que realiza busca em profundidade
         const BFS = () => {
-            const row = new Array();
+            const row = [];
             row.push({x,y});
 
             while (row.length > 0) {
                 let pop = row.pop();
                 reveal.push(pop); //Coordenadas que serão reveladas
 
+                //Só visita os outros filhos se nessa casa tiver 0 bombas em volta
+                let numNumberOfPumpsNearby = calcNumberOfPumpsNearby(_field, pop.x, pop.y);
+                if(numNumberOfPumpsNearby > 0) continue; 
+
+
                 let iStart = (pop.x - 1 < 0) ? 0 : pop.x - 1;
                 let iEnd = (pop.x + 2 > dim) ? dim : pop.x + 2;
                 let jStart = (pop.y - 1 < 0) ? 0 : pop.y - 1;
                 let jEnd = (pop.y + 2 > dim) ? dim : pop.y + 2;
 
-                let numNumberOfPumpsNearby = calcNumberOfPumpsNearby(field, pop.x, pop.y);
-                if(numNumberOfPumpsNearby > 0) continue; //Só visita os outros filhos se nessa casa tiver 0 bombas em volta
 
                 for (let i = iStart; i < iEnd; i++) {
                     for (let j = jStart; j < jEnd; j++) {
 
                         if (
-                            field[i][j] === false //Não é uma bomba
+                            _field[i][j] === false //Não é uma bomba
                             && row.findIndex(value => value.x === i && value.y === j) === -1 //Não ésta na fila
                             && reveal.findIndex(value => value.x === i && value.y === j) === -1) {  //Não foi visitado ainda
 
@@ -114,12 +109,25 @@ const MineField = (props) => {
 
 
     const actionCell = (actionType, data) => {
+        debugger;
         switch (actionType) {
             case ActionType.TO_REVEAL:
-                toReveal(data.x, data.y);
+                if(firstClick){
+                    const newField = genField(data.x,data.y);
+                    toReveal(data.x, data.y, newField);
+                    setFirstClick(false);
+                    setField(newField);
+                    
+                }
+                else{
+                    toReveal(data.x, data.y);
+                }
                 break;
             case ActionType.EXE_BOMB:
                 toRevealBombs();
+                break;
+            default:
+                console.log(actionType);
                 break;
 
         }

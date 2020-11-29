@@ -22,7 +22,7 @@ const calcNumberOfPumpsNearby = (field, x, y) => {
     const iStart = (x - 1 < 0) ? 0 : x - 1;
     const iEnd = (x + 2 > n) ? n : x + 2;
     const jStart = (y - 1 < 0) ? 0 : y - 1;
-    const jEnd = (y + 2 > n) ? n : y + 2;
+    const jEnd = (y + 2 > m) ? m : y + 2;
 
     let counter = 0;
     for (let i = iStart; i < iEnd; i++) {
