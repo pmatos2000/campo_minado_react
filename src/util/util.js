@@ -1,3 +1,4 @@
+import { CellType } from "./enum";
 
 //Gera um número aleatorio de 0 a max-1
 const randomInt = max => Math.floor(Math.random() * max);
@@ -27,7 +28,7 @@ const calcNumberOfPumpsNearby = (field, x, y) => {
     let counter = 0;
     for (let i = iStart; i < iEnd; i++) {
         for (let j = jStart; j < jEnd; j++) {
-            if (field[i][j] === true && i !== j) {
+            if (field[i][j] === CellType.IS_BOMB){
                 counter++;
             }
         }

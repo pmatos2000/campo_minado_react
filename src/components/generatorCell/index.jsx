@@ -10,7 +10,7 @@ const GeneratorCell = (props) => {
         <Cell
             x={x}
             y={y}
-            field={field}
+            value={field[x][y]}
             action={action}
             revealed={revealeds[x][y]}
             key={`cell_${x}_${y}`}

@@ -33,7 +33,8 @@
     background-size: 100%;
 }
 
-.Cell--press_empty{
+.Cell--press_empty_0{
+    font-size: 0;
     background-color: var(--background-color-press);
 }
 
