@@ -8,7 +8,7 @@ const actionCell = (x, y) => {
 const App = function () {
   return (
     <div className="App">
-      <MineField dim={8} actionCell={actionCell}/>
+      <MineField dim={8} numBombs={16} actionCell={actionCell}/>
     </div>
   );
 }

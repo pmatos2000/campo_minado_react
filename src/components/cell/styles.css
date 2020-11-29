@@ -19,7 +19,7 @@
 }
 
 .Cell--normal:hover{
-    background-color: rgb(64, 64, 255);
+    background-color: rgb(128, 128, 255);
 }
 
 .Cell--normal:active{
