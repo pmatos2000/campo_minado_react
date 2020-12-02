@@ -54,7 +54,6 @@ const MineField = (props) => {
 
     //Função para verificar se o jogo foi vencido
     const victory = () => {
-        debugger;
         for(let i = 0; i < dim; i++){
             for(let j = 0; j < dim; j++){
                 //Verifica se todas as celulas que não foram reveladas

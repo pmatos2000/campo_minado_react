@@ -1,0 +1,19 @@
+.Head {
+    display: flex;
+    width: 100%;
+    height:  min(48px, max(32px, 5vw));
+    margin-bottom: 16px;
+    background-color: rgb(0, 0, 255);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Head .Title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.Head .Menu {
+    background-color: rgb(0, 0, 255);
+}
